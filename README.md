@@ -1,2 +1,7 @@
-# manipulator
-This is the simulation of manipulator on web client based on ThreeJS and MATHJS.
+# Welcome
+This is landing page of the web app
+version : 5.230330
+# New Update
+- Add mathjs into project.
+- Full project calculate and simulate only browser.
+- Add full mananipulator gripper.
