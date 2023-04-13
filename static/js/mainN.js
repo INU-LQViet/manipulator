@@ -142,6 +142,15 @@ var update_data = (data)=>{
 $(document).ready(()=>{
     var canvas = document.getElementById('arm-view');
     var manipulator = new Arm3D(canvas);
+
+    $('#btn-open-tab').click(()=>{
+        $('#div-reference-tab').show();
+    });
+
+    $('#btn-close-tab').click(()=>{
+        $('#div-reference-tab').css("display","none");
+    });
+
     $('#home-btn').click(()=>{
         manKi.raw_current = init_data;
         manKi.update_cur_T;
