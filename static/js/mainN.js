@@ -152,9 +152,7 @@ $(document).ready(()=>{
     });
 
     $('#home-btn').click(()=>{
-        manKi.raw_current = init_data;
-        manKi.update_cur_T;
-        manKi.update = true;
+        manKi.update_cur_angle(init_data);
     });
     for(let i =0; i<4; i++){
         $(position_btns[i]).click(()=>{
@@ -188,17 +186,29 @@ $(document).ready(()=>{
         $(UPjoin_btns[i]).click(()=>{
             let maxvalue = 3068;
             if(manKi.raw_current[i] + 20 <= maxvalue){
-                manKi.update = true;
-                manKi.raw_current[i] += 20;
-                manKi.update_cur_T();
+                let temp = [];
+                manKi.raw_current.forEach((raws, index)=>{
+                    if(index == i){
+                        temp.push(raws+20);
+                    }else{
+                        temp.push(raws)
+                    };
+                })     
+                manKi.update_cur_angle(temp);
             };
         });
         $(DOWNjoin_btns[i]).click(()=>{
             let minvalue = 1023;
             if(manKi.raw_current[i] + 20 >= minvalue){
-                manKi.update = true;
-                manKi.raw_current[i] -= 20;
-                manKi.update_cur_T();
+                let temp = [];
+                manKi.raw_current.forEach((raws, index)=>{
+                    if(index == i){
+                        temp.push(raws-20);
+                    }else{
+                        temp.push(raws)
+                    };
+                })     
+                manKi.update_cur_angle(temp);
             };
         });
     };

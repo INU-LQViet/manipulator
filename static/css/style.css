@@ -85,6 +85,9 @@ header{
 h1{
     font-size: large;
 }
+h6{
+    margin: 5px;
+}
 /* div{
     border: black solid 1px;
 } */
@@ -96,14 +99,14 @@ h1{
 }
 button{
     width: 80px;
-    height: 40px;
+    height: 30px;
     background-color: #4CAF50; /* Green */
     border: none;
     color: rgb(66, 1, 1);
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 15px;
+    font-size: 13px;
     line-height:25px;
     opacity: 0.5;
 }
@@ -112,18 +115,6 @@ button:hover {
     background-color: #025505;
     color: rgb(252, 156, 156);
     opacity: 1;
-}
-
-.goal-value{
-    width: 60px;
-    height: 30px;
-    padding: 1px;
-    align-items: center;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 /* Roof:       < main >  */
@@ -172,8 +163,7 @@ main{
 
 #btn-open-tab{
     position: absolute;
-    top: 50%;
-    
+    top: 40%;
 }
 
 /* References COntrol tab */
@@ -184,7 +174,7 @@ main{
     text-align: center;
     position: absolute;
     right: 0;
-    top: 10%;
+    top: 5%;
     height: fit-content;
 }
 
@@ -205,15 +195,24 @@ main{
 
 /* third-layer */
 .position-control-container > div{
-    margin: 2px;
+    margin: 1px;
 }
 
 .join-control-container{
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
+    margin:0px;
+    height: 40px;
 }
 
 /* four-layer */
+.name-join-div, .curr-join-div{
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+
 .join-control-container > div{
     justify-content: center;
     position: relative;
