@@ -139,6 +139,12 @@ var update_data = (data)=>{
     });  
 };
 
+const solveINV = (rad_phi0, targetT)=>{
+    let solve_goal1 = manKi.manInvKi1(math.matrix(rad_phi0), targetT);
+    let solve_goal2 = manKi.manInvKi2(math.matrix(rad_phi0), targetT);
+    return (solve_goal1.isSolve)? solve_goal1: solve_goal2;
+};
+
 $(document).ready(()=>{
     var canvas = document.getElementById('arm-view');
     var manipulator = new Arm3D(canvas);
@@ -156,31 +162,44 @@ $(document).ready(()=>{
     });
     for(let i =0; i<4; i++){
         $(position_btns[i]).click(()=>{
-            let targetT = [];
-            if(set_position[i]==="ZP"){
-                targetT = math.add(manKi.cur_T, math.matrix([[0,0,0,0],[0,0,0,0],[0,0,0,0.01],[0,0,0,0]]));
-            }else if(set_position[i]==="ZN"){
-                targetT = math.add(manKi.cur_T, math.matrix([[0,0,0,0],[0,0,0,0],[0,0,0,-0.01],[0,0,0,0]]));
-            }else if(set_position[i]==="XP"){
-                targetT = math.add(manKi.cur_T, math.matrix([[0,0,0,0.01],[0,0,0,0],[0,0,0,0],[0,0,0,0]]));
-            }else{
-                targetT = math.add(manKi.cur_T, math.matrix([[0,0,0,-0.01],[0,0,0,0],[0,0,0,0],[0,0,0,0]]));
-            };
-            let rad_cur = manKi.cvRawtoRad(manKi.raw_current);
-            let solve_goal1 = manKi.manInvKi1(math.matrix(rad_cur), targetT);
-            if(solve_goal1.isSolve === true){
-                console.log("It's solved!");
-                manKi.update_cur_angle(manKi.cvRadtoRaw(solve_goal1.phifinal));  
-            }else{
-                let solve_goal2 = manKi.manInvKi2(math.matrix(rad_cur), targetT);
-                if(solve_goal2.isSolve === true){
+            let targetT = [];  
+            let rad_cur = manKi.cvRawtoRad(manKi.raw_current);         
+            // rotate the coordinate to XOY => join1 always = 0;
+            if(set_position[i]==="ZP" || set_position[i]==="ZN"){
+                if(set_position[i]==="ZP"){
+                    targetT = math.add(manKi.cur_T, math.matrix([[0,0,0,0],[0,0,0,0],[0,0,0,0.01],[0,0,0,0]]));
+                }else{
+                    targetT = math.add(manKi.cur_T, math.matrix([[0,0,0,0],[0,0,0,0],[0,0,0,-0.01],[0,0,0,0]]));
+                };
+                let resultINV = solveINV(rad_cur, targetT);
+                if(resultINV.isSolve === true){
                     console.log("It's solved!");
-                    manKi.update_cur_angle(manKi.cvRadtoRaw(solve_goal2.phifinal));  
+                    manKi.update_cur_angle(manKi.cvRadtoRaw(resultINV.phifinal));          
+                // // socketio.emit('command', {goals:manKi.raw_current});
                 }else{
                     console.log("Error in solving the inv!");
                 };
-            };
-            $("#div-hide-whenclick").css("display","block");
+
+            }else if(set_position[i]==="XP" || set_position[i]==="XN"){
+                let rotationAngle = [2045, manKi.raw_current[1],manKi.raw_current[2],manKi.raw_current[3]];
+                let rotMatrixT= manKi.manForwardKi(math.matrix(manKi.cvRawtoRad(rotationAngle)));
+                if(set_position[i]==="XP"){
+                    targetT = math.add(rotMatrixT, math.matrix([[0,0,0,0.01],[0,0,0,0],[0,0,0,0],[0,0,0,0]]));
+                }else{
+                    targetT = math.add(rotMatrixT, math.matrix([[0,0,0,-0.01],[0,0,0,0],[0,0,0,0],[0,0,0,0]]));
+                };
+                let resultINV = solveINV(rotationAngle, targetT);
+                if(resultINV.isSolve === true){
+                    console.log("It's solved!");
+                    let frozenCur = math.flatten(resultINV.phifinal);
+                    // console.log(frozenCur.get([1]));
+                    let tempfinal = [rad_cur[0], frozenCur.get([1]),frozenCur.get([2]),frozenCur.get([3])];
+                    manKi.update_cur_angle(manKi.cvRadtoRaw(tempfinal)); 
+                // // socketio.emit('command', {goals:manKi.raw_current});
+                }else{
+                    console.log("Error in solving the inv!");
+                };            
+            }
         });
 
         $(UPjoin_btns[i]).click(()=>{
@@ -195,11 +214,12 @@ $(document).ready(()=>{
                     };
                 })     
                 manKi.update_cur_angle(temp);
+                // socketio.emit('command', {goals:manKi.raw_current});
             };
         });
         $(DOWNjoin_btns[i]).click(()=>{
             let minvalue = 1023;
-            if(manKi.raw_current[i] + 20 >= minvalue){
+            if(manKi.raw_current[i] - 20 >= minvalue){
                 let temp = [];
                 manKi.raw_current.forEach((raws, index)=>{
                     if(index == i){
@@ -209,6 +229,7 @@ $(document).ready(()=>{
                     };
                 })     
                 manKi.update_cur_angle(temp);
+                // socketio.emit('command', {goals:manKi.raw_current});
             };
         });
     };
