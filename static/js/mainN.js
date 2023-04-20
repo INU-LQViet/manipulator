@@ -210,9 +210,9 @@ $(document).ready(()=>{
                     if(index == i){
                         temp.push(raws+20);
                     }else{
-                        temp.push(raws)
+                        temp.push(raws);
                     };
-                })     
+                });     
                 manKi.update_cur_angle(temp);
                 // socketio.emit('command', {goals:manKi.raw_current});
             };
@@ -225,7 +225,7 @@ $(document).ready(()=>{
                     if(index == i){
                         temp.push(raws-20);
                     }else{
-                        temp.push(raws)
+                        temp.push(raws);
                     };
                 })     
                 manKi.update_cur_angle(temp);
