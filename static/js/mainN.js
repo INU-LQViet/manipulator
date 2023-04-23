@@ -137,6 +137,15 @@ var update_data = (data)=>{
             robot_parts[index+1].coordinate.rotation.z = goal_rad;
         };
     });  
+    manKi.raw_current.forEach((raw, index)=>{
+        $(join_currents[index]).text(Math.floor(raw*0.088)-90);
+    });
+    $("#Tmatrices-container").empty();
+    manKi.cur_T.forEach((value)=>{
+        // console.log(value);
+        let temptdiv = $("<div></div>").text(`${Math.floor(1000*value)/1000}`)
+        $("#Tmatrices-container").append(temptdiv);
+    });
 };
 
 const solveINV = (rad_phi0, targetT)=>{
@@ -240,9 +249,6 @@ $(document).ready(()=>{
     function render() {
         if(manKi.update == true){
             update_data(manKi.raw_current);
-            manKi.raw_current.forEach((raw, index)=>{
-                $(join_currents[index]).text(Math.floor(raw*0.088)-90);
-            });
             manKi.update = false;
         };
         manipulator.drawing(canvas);

@@ -24,12 +24,12 @@
                 <canvas id="arm-view">The brower doesn't support</canvas>
             </div>
             <div class="btn-show-container">
-                <input type="button" value ="OPEN" id="btn-open-tab">
+                <input type="button" value ="C" id="btn-open-tab">
             </div>
         </div>
         <div class="input-container" id="div-reference-tab">
-            <div>
-                <input type="button" value="CLOSE" id="btn-close-tab">
+            <div id="close-btn-tab-container">
+                <input type="button" value="X" id="btn-close-tab">
             </div>
             <div>
                 <h6>POSITION CONTROL</h6>
@@ -66,57 +66,41 @@
                     <div class="join-control-container">
                         <div class="name-join-div"><p>JOIN 1</p></div>
                         <div class="curr-join-div"><p id="cur-join1">90</p></div>
-                        <div class="set-join-div">
-                            <div class="button-container">
-                                <button id="btn-up-join1">INC &#8593</button>
-                            </div>
+                        <div class="button-container">
+                            <button id="btn-up-join1">INC &#8593</button>
                         </div>
-                        <div class="set-join-div">
-                            <div class="button-container">
-                                <button id="btn-down-join1">DES &#8595</button>
-                            </div>
+                        <div class="button-container">
+                            <button id="btn-down-join1">DES &#8595</button>
                         </div>
                     </div>
                     <div class="join-control-container">
                         <div class="name-join-div"><p>JOIN 2</p></div>
                         <div class="curr-join-div"><p id="cur-join2">90</p></div>
-                        <div class="set-join-div">
-                            <div class="button-container">
-                                <button id="btn-up-join2">INC &#8593</button>
-                            </div>
+                        <div class="button-container">
+                            <button id="btn-up-join2">INC &#8593</button>
                         </div>
-                        <div class="set-join-div">
-                            <div class="button-container">
-                                <button id="btn-down-join2">DES &#8595</button>
-                            </div>
+                        <div class="button-container">
+                            <button id="btn-down-join2">DES &#8595</button>
                         </div>
                     </div>
                     <div class="join-control-container">
                         <div class="name-join-div"><p>JOIN 3</p></div>
                         <div class="curr-join-div"><p id="cur-join3">90</p></div>
-                        <div class="set-join-div">
-                            <div class="button-container">
-                                <button id="btn-up-join3">INC &#8593</button>
-                            </div>
+                        <div class="button-container">
+                            <button id="btn-up-join3">INC &#8593</button>
                         </div>
-                        <div class="set-join-div">
-                            <div class="button-container">
-                                <button id="btn-down-join3">DES &#8595</button>
-                            </div>
+                        <div class="button-container">
+                            <button id="btn-down-join3">DES &#8595</button>
                         </div>
                     </div>
                     <div class="join-control-container">
                         <div class="name-join-div"><p>JOIN 4</p></div>
                         <div class="curr-join-div"><p id="cur-join4">90</p></div>
-                        <div class="set-join-div">
-                            <div class="button-container">
-                                <button id="btn-up-join4">INC &#8593</button>
-                            </div>
+                        <div class="button-container">
+                            <button id="btn-up-join4">INC &#8593</button>
                         </div>
-                        <div class="set-join-div">
-                            <div class="button-container">
-                                <button id="btn-down-join4">DES &#8595</button>
-                            </div>
+                        <div class="button-container">
+                            <button id="btn-down-join4">DES &#8595</button>
                         </div>
                     </div>
                     <div class="end-effector-container">
@@ -128,6 +112,11 @@
                     <div>
                         <div class="button-container">
                             <button id="home-btn">HOME</button>
+                        </div>
+                    </div>
+                    <div>
+                        <h6>HOMOGENEOUS TRANSFORMATION MATRICES</h6>
+                        <div id="Tmatrices-container">
                         </div>
                     </div>
                 </div>

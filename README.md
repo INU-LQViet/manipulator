@@ -13,6 +13,9 @@ version : 5.230410
 - Solve inverse kinematic of all conditions. (late night).
 - Update CSS:
     - fixed the margin.
+# New Update 23-04-20
+- Add gridhelper.
+
 # List Todo
 - Get boudary conditions.
 - Gripper animation

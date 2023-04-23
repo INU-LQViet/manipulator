@@ -76,7 +76,7 @@ BDO[DIR="rtl"]  { direction: rtl; unicode-bidi: bidi-override }
   h4, h5, h6    { page-break-after: avoid }
   ul, ol, dl    { page-break-before: avoid }
 }
-
+/* General btn */
 header{
     margin: 10px;
     text-align: center;
@@ -117,30 +117,41 @@ button:hover {
     opacity: 1;
 }
 
+
+
 /* Roof:       < main >  */
-/* Layer1:   <canvas-container>                              <input-container > */
-/* Layer2:  <canvas (#arm-view)>             <position-control-container>  <join-control-container>*/
-/* Layer3:          x                            <btn-container>                <joins-container> */
-/* Layer4:          x                                  x      <left-span> <range-container> <right-span> */
+/* Layer 1:   <main-container> */
+/* Layer 1.1:  <canvas (#arm-view)>*/
+/* Layer 1.2: btn-show-container */
+/* Layer 1.2.1: #btn-open-tab */
+
+/* Layer 2:   <input-container > #div-reference-tab*/
+/* Layer 2.1: #close-btn-tab-container*/
+/* Layer 2.1.1: #btn-close-tab*/
+
+/* Layer 2.2: div */
+/* Layer 2.2.1: h6 */
+/* Layer 2.2.2: position-control-container */
+/* Layer 2.2.2.1: button-container */
+/* Layer 2.2.2.1.1: button  zplus-btn ...*/
+
+/* Layer 2.3: div */
+/* Layer 2.3.1: h6 */
+/* Layer 2.3.2: group-joins-control-container */
+/* Layer 2.3.2.1: join-control-container */
+/* Layer 2.3.2.1.1: p  name-join-div*/
+/* Layer 2.3.2.1.2: p  curr-join-div*/
+/* Layer 2.3.2.1.3: btn  button-container*/
+/* Layer 2.3.2.1.4: ntn  button-container*/
+
 main{
     /* display: grid;
     grid-template-rows: 50% 20%; */
 }
-
-.cam-container{
-    margin: auto;
-    width: auto;
-    text-align: center;
-    align-items: center;
-}
-/* main root */
 .main-container{
     display: grid;
     grid-template-columns: 95% auto;
 }
-
-/* first-layer */
-
 .canvas-container{
     width: 90%;
     height: 90%;
@@ -148,22 +159,32 @@ main{
     top: 0;
     left: 0; */
 }
-
-.btn-show-container{
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    right: 0;
-}
-
 /* second-layer */
 #arm-view{
     width: 100vw;
     height: 100vh;
 }
 
+.btn-show-container{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    right: 10%;
+}
+
 #btn-open-tab{
     position: absolute;
-    top: 40%;
+    top: 30%;
+    height: 50px;
+    width: 50px;
+    border: red;
+    border-radius: 50%;
+    color: rgb(255, 145, 0);
+    background-color: rgb(48, 128, 248);
+}
+
+#btn-open-tab:hover{
+    background-color: rgb(173, 9, 9);
+    color: #4CAF50;
 }
 
 /* References COntrol tab */
@@ -173,7 +194,7 @@ main{
     align-items: center;
     text-align: center;
     position: absolute;
-    right: 0;
+    right: 3%;
     top: 5%;
     height: fit-content;
 }
@@ -182,6 +203,23 @@ main{
     /* border: red solid 1px; */
     background-color: white;
 }
+
+#close-btn-tab-container{
+    text-align: left;
+}
+#btn-close-tab{
+    width: 40px;
+    height: 40px;
+    color: black;
+    background-color: rgb(252, 229, 229);
+    border: rgb(250, 134, 1) 0px;
+    border-radius: 50%;
+}
+#btn-close-tab:hover{
+    color: #025505;
+    background-color: rgb(252, 0, 0);
+}
+
 .position-control-container{
     display: grid;
     grid-template-columns: auto auto auto;
@@ -222,4 +260,12 @@ main{
     grid-template-columns: auto auto;
 }
 
-
+#Tmatrices-container{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+}
+#Tmatrices-container > div{
+    border: solid 0.1px;
+    
+}

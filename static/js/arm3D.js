@@ -8,9 +8,12 @@ export default class Arm3D{
         this.scene = new THREE.Scene();
         //  fov = 45;aspect = 2;near = 0.1;far = 100;
         this.camera = new THREE.PerspectiveCamera(45, 2, 0.1, 100);
+        // size of grid = 10; divisions = 20;
+        this.gridhelper = new THREE.GridHelper(100, 50);
     }
 
     init(){
+
         this.camera.position.set(-20, 20, -20);
         this.scene.background = new THREE.Color('white');
         this.renderer.outputEncoding = THREE.sRGBEncoding;
@@ -31,7 +34,8 @@ export default class Arm3D{
         
         this.scene.add(dlight);
         this.scene.add(dlight.target);
-
+        // grid helper
+        this.scene.add(this.gridhelper);
     };
 
     drawing(canvas){
