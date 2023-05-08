@@ -181,10 +181,12 @@ $(document).ready(()=>{
             let rad_cur = manKi.cvRawtoRad(manKi.raw_current);         
             // rotate the coordinate to XOY => join1 always = 0;
             if(set_position[i]==="ZP" || set_position[i]==="ZN"){
+                let stepVal = $('#dis-step-input').val();
+                console.log(stepVal);
                 if(set_position[i]==="ZP"){
-                    targetT = math.add(manKi.cur_T, math.matrix([[0,0,0,0],[0,0,0,0],[0,0,0,0.01],[0,0,0,0]]));
+                    targetT = math.add(manKi.cur_T, math.matrix([[0,0,0,0],[0,0,0,0],[0,0,0,0.01*stepVal],[0,0,0,0]]));
                 }else{
-                    targetT = math.add(manKi.cur_T, math.matrix([[0,0,0,0],[0,0,0,0],[0,0,0,-0.01],[0,0,0,0]]));
+                    targetT = math.add(manKi.cur_T, math.matrix([[0,0,0,0],[0,0,0,0],[0,0,0,-0.01*stepVal],[0,0,0,0]]));
                 };
                 let resultINV = solveINV(rad_cur, targetT);
                 if(resultINV.isSolve === true){
@@ -199,9 +201,9 @@ $(document).ready(()=>{
                 let rotationAngle = [2045, manKi.raw_current[1],manKi.raw_current[2],manKi.raw_current[3]];
                 let rotMatrixT= manKi.manForwardKi(math.matrix(manKi.cvRawtoRad(rotationAngle)));
                 if(set_position[i]==="XP"){
-                    targetT = math.add(rotMatrixT, math.matrix([[0,0,0,0.01],[0,0,0,0],[0,0,0,0],[0,0,0,0]]));
+                    targetT = math.add(rotMatrixT, math.matrix([[0,0,0,0.01*stepVal],[0,0,0,0],[0,0,0,0],[0,0,0,0]]));
                 }else{
-                    targetT = math.add(rotMatrixT, math.matrix([[0,0,0,-0.01],[0,0,0,0],[0,0,0,0],[0,0,0,0]]));
+                    targetT = math.add(rotMatrixT, math.matrix([[0,0,0,-0.01*stepVal],[0,0,0,0],[0,0,0,0],[0,0,0,0]]));
                 };
                 let resultINV = solveINV(rotationAngle, targetT);
                 if(resultINV.isSolve === true){
@@ -219,11 +221,12 @@ $(document).ready(()=>{
 
         $(UPjoin_btns[i]).click(()=>{
             let maxvalue = 3068;
-            if(manKi.raw_current[i] + 20 <= maxvalue){
+            let ang_step = $('#rot-step-output').val();
+            if(manKi.raw_current[i] + 11*ang_step <= maxvalue){
                 let temp = [];
                 manKi.raw_current.forEach((raws, index)=>{
                     if(index == i){
-                        temp.push(raws+20);
+                        temp.push(raws+11*ang_step);
                     }else{
                         temp.push(raws);
                     };
@@ -234,11 +237,12 @@ $(document).ready(()=>{
         });
         $(DOWNjoin_btns[i]).click(()=>{
             let minvalue = 1023;
-            if(manKi.raw_current[i] - 20 >= minvalue){
+            let ang_step = $('#rot-step-output').val();
+            if(manKi.raw_current[i] - 11*ang_step >= minvalue){
                 let temp = [];
                 manKi.raw_current.forEach((raws, index)=>{
                     if(index == i){
-                        temp.push(raws-20);
+                        temp.push(raws - 11*ang_step);
                     }else{
                         temp.push(raws);
                     };
