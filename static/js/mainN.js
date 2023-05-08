@@ -169,6 +169,12 @@ $(document).ready(()=>{
     $('#home-btn').click(()=>{
         manKi.update_cur_angle(init_data);
     });
+    $('#setting-btn').click(()=>{
+        $('#setting-hide-contains').css("display","block");
+    });
+    $('#okay-setting-btn').click(()=>{
+        $('#setting-hide-contains').css("display","none");
+    });
     for(let i =0; i<4; i++){
         $(position_btns[i]).click(()=>{
             let targetT = [];  

@@ -96,6 +96,7 @@ h6{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin:0px 1px 0px 1px;
 }
 button{
     width: 80px;
@@ -109,6 +110,7 @@ button{
     font-size: 13px;
     line-height:25px;
     opacity: 0.5;
+    margin:0px 1px 0px 1px;
 }
 
 button:hover {
@@ -268,4 +270,17 @@ main{
 #Tmatrices-container > div{
     border: solid 0.1px;
     
+}
+
+#setting-hide-contains{
+    display: none;
+}
+.setting-part-contain{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    padding: 0px 5px 0px 5px;
+}
+.setting-part-contain > div{
+    margin: 0px 10px 0px 10px;
 }

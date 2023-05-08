@@ -112,11 +112,38 @@
                     <div>
                         <div class="button-container">
                             <button id="home-btn">HOME</button>
+                            <button id="setting-btn">SETTING</button>
                         </div>
                     </div>
                     <div>
                         <h6>HOMOGENEOUS TRANSFORMATION MATRICES</h6>
                         <div id="Tmatrices-container">
+                        </div>
+                    </div>
+                    <div id="setting-hide-contains">
+                        <div class="setting-part-contain">
+                            <div><p>STEP-DIS</p></div>
+                            <div>
+                                <input type="range" id="dis-step-input" min="1" max="10" value="1" step="1" oninput="this.nextElementSibling.value = this.value">
+                                <output id="dis-step-output">1</output>
+                            </div>
+                            <p>CM</p>
+                        </div>
+                        <div class="setting-part-contain">
+                            <div><p>STEP-ROT</p></div>
+                            <div>
+                                <input type="range" id="rot-step-input" min="10" max="50" value="10" step="5" oninput="this.nextElementSibling.value = this.value">
+                                <output id="dis-step-output">10</output>
+                            </div>
+                            <p>DEG</p>
+                        </div>
+                        <div class="setting-part-contain">
+                            <div><p>SPEED-LEVEL</p></div>
+                            <div>
+                                <input type="range" id="speed-level-input" min="1" max="10" value="1" step="1" oninput="this.nextElementSibling.value = this.value">
+                                <output id="dis-step-output">1</output>
+                            </div>
+                            <button id="okay-setting-btn">SET</button>
                         </div>
                     </div>
                 </div>
