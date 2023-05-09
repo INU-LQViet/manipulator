@@ -178,11 +178,12 @@ $(document).ready(()=>{
     for(let i =0; i<4; i++){
         $(position_btns[i]).click(()=>{
             let targetT = [];  
-            let rad_cur = manKi.cvRawtoRad(manKi.raw_current);         
+            let rad_cur = manKi.cvRawtoRad(manKi.raw_current);   
+            let stepVal = $('#dis-step-input').val();      
             // rotate the coordinate to XOY => join1 always = 0;
             if(set_position[i]==="ZP" || set_position[i]==="ZN"){
-                let stepVal = $('#dis-step-input').val();
-                console.log(stepVal);
+    
+                // console.log(stepVal);
                 if(set_position[i]==="ZP"){
                     targetT = math.add(manKi.cur_T, math.matrix([[0,0,0,0],[0,0,0,0],[0,0,0,0.01*stepVal],[0,0,0,0]]));
                 }else{
