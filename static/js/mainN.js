@@ -258,12 +258,14 @@ $(document).ready(()=>{
     loadRobots(manipulator);
     
     function render() {
-        if(manKi.update == true){
-            update_data(manKi.raw_current);
-            manKi.update = false;
-        };
-        manipulator.drawing(canvas);
-        requestAnimationFrame(render);
+        setTimeout(()=>{
+            if(manKi.update == true){
+                update_data(manKi.raw_current);
+                manKi.update = false;
+            };
+            manipulator.drawing(canvas);
+            requestAnimationFrame(render);
+        }, 1000/100)
     };
     requestAnimationFrame(render);
 });
